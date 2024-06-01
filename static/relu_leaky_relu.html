@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  background-color: #282c34;
+  color: #abb2bf;
+  font-family: monospace;
+}
+
+h1, h2 {
+  color: #c678dd;
+}
+
+table {
+  width: 80%;
+  margin: 20px auto;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #4c566a;
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #3b4252;
+  color: #e5c07b;
+}
+
+code {
+  background-color: #3e4451;
+  color: #98c379;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+ul {
+  list-style-type: disc;
+  margin-left: 40px;
+}
+
+li {
+  margin-bottom: 10px;
+}
+</style>
+</head>
+<body>
+
+<h1>Understanding ReLU and LeakyReLU</h1>
+
+<h2>What is ReLU?</h2>
+
+ReLU, or Rectified Linear Unit, is a popular activation function in neural networks. It's defined by the following simple formula:
+
+<pre><code>
+ReLU(x) = max(0, x)
+</code></pre>
+
+<ul>
+  <li>This means that for any negative input, ReLU outputs 0.</li>
+  <li>For any positive input, ReLU outputs the input directly.</li>
+</ul>
+
+<h2>ReLU's Effect on Model Predictions</h2>
+
+<ul>
+  <li><b>Introduces Non-linearity:</b> Neural networks are powerful because they can model complex, non-linear relationships. ReLU introduces this non-linearity, allowing the network to learn more intricate patterns in data.</li>
+  <li><b>Sparse Activation:</b> By outputting zero for negative values, ReLU effectively "turns off" certain neurons. This sparsity can lead to faster training times and potentially prevent overfitting, as fewer neurons are active during each training iteration.</li>
+</ul>
+
+<h2>LeakyReLU: A Variation on ReLU</h2>
+
+LeakyReLU addresses a potential issue with ReLU called the "dying ReLU" problem. 
+
+<h3>The Dying ReLU Problem</h3>
+
+<ul>
+  <li>Imagine a neuron gets stuck receiving large negative inputs during training.</li>
+  <li>With ReLU, this neuron would always output zero.</li>
+  <li>A zero output means no gradient flows back during backpropagation, halting the neuron's learning process.</li>
+</ul>
+
+<h3>LeakyReLU's Solution</h3>
+
+LeakyReLU introduces a small non-zero slope for negative values:
+
+<pre><code>
+LeakyReLU(x) = { 0.01x  if x < 0
+                 x     if x >= 0 }
+</code></pre>
+
+<ul>
+  <li>This small slope allows a small gradient to flow even for negative inputs, preventing neurons from becoming completely inactive.</li>
+</ul>
+
+<h2>Comparing ReLU and LeakyReLU</h2>
+
+<table>
+  <tr>
+    <th>Feature</th>
+    <th>ReLU</th>
+    <th>LeakyReLU</th>
+  </tr>
+  <tr>
+    <td>Formula</td>
+    <td><code>max(0, x)</code></td>
+    <td><code>0.01x (if x < 0), x (if x >= 0)</code></td>
+  </tr>
+  <tr>
+    <td>Negative Inputs</td>
+    <td>Output 0</td>
+    <td>Output a small non-zero value</td>
+  </tr>
+  <tr>
+    <td>Dying ReLU Problem</td>
+    <td>Susceptible</td>
+    <td>Less susceptible</td>
+  </tr>
+  <tr>
+    <td>Computational Cost</td>
+    <td>Lower</td>
+    <td>Slightly higher</td>
+  </tr>
+</table>
+
+<h2>In Conclusion</h2>
+
+<ul>
+  <li>Both ReLU and LeakyReLU are popular activation functions with their own strengths.</li>
+  <li>ReLU is computationally efficient and promotes sparsity.</li>
+  <li>LeakyReLU addresses the dying ReLU problem but comes with a slightly higher computational cost.</li>
+  <li>The choice between the two often depends on the specific dataset and model architecture.</li>
+</ul>
+</body>
+</html>
