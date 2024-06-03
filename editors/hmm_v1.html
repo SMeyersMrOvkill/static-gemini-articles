@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>ACE in Action</title>
+<style type="text/css" media="screen">
+    #editor { 
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+</style>
+</head>
+<body>
+
+<div id="editor">import torch
+
+class HMM(torch.nn.Module):
+    def __init__(self, num_states, num_observations):
+        super(HMM, self).__init__()
+
+        self.num_states = num_states
+        self.num_observations = num_observations
+
+        # Initialize transition probabilities randomly (will train later)
+        self.transition_probs = torch.nn.Parameter(
+            torch.rand(num_states, num_states)
+        )
+
+        # Initialize emission probabilities randomly (will train later)
+        self.emission_probs = torch.nn.Parameter(
+            torch.rand(num_states, num_observations)
+        )
+
+    def forward(self, observations):
+        # Not used for HMMs in this stage (used for training later)
+        pass
+
+# Example usage:
+num_weather_states = 3  # Sunny, Rainy, Cloudy
+num_activities = 4     # Example: Walk, Stay Inside, Umbrella, Sunglasses
+
+# Create an instance of your HMM
+model = HMM(num_weather_states, num_activities)
+
+# Print the randomly initialized parameters
+print("Transition Probabilities:\n", model.transition_probs)
+print("\nEmission Probabilities:\n", model.emission_probs)</div>
+    
+<script src="/ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/monokai");
+    editor.session.setMode("ace/mode/python");
+</script>
+</body>
+</html>
